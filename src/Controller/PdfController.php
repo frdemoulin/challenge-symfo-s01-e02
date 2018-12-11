@@ -2,10 +2,14 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\File\Stream;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-class ClassroomController extends AbstractController
+class PdfController extends AbstractController
 {
     public $names = [
         [
@@ -42,23 +46,28 @@ class ClassroomController extends AbstractController
         ],
     ];
 
-    public function showStudents()
+    /**
+     * @Route("/pdf", name="pdf")
+     */
+    public function streamPdf()
     {
-        return $this->render('classroom/students.html.twig', [
-            'students' => $this->names
-        ]);
+        $stream  = new Stream(__DIR__.'/../../public/assets/pdf/calendrier-2017-turquoise.pdf');
+        // $file = __DIR__.'/../../public/assets/pdf/calendrier-2017-turquoise.pdf';
+        //$file = $finder->files()->in(__DIR__.'/../../public/assets/pdf');
+        //$file = path('public/assets/pdf/calendrier-2017-turquoise.pdf');
+        $response = new BinaryFileResponse($stream);
+        
+        return new Response($response);
     }
 
-    public function showStudentInfo($id)
+    /**
+     * @Route("/api/students", name="api_students")
+     */
+    public function jsonResponseStudents()
     {
-        $studentNumber = count($this->names);
-
-        if ($id >=0 && $id <= $studentNumber) {
-            return $this->render('classroom/student-info.html.twig', [
-                'student' => $this->names[$id]
-            ]);
-        } else return $this->render('error/404.html.twig');
-
-
+        $response = new JsonResponse(array($this->names));
+        
+        return new Response($response);
     }
+
 }
