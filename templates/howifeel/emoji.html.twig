@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Humeur du jour{% endblock %}
+
+{% block body %}
+
+<div class="example-wrapper">
+    <h1>Humeur du jour !</h1>
+
+    {% block emoji %}
+        <img src="{{ asset('images/' ~ imageName ) }}" alt="mon humeur !">
+    {% endblock %}
+
+
+</div>
+{% endblock %}
