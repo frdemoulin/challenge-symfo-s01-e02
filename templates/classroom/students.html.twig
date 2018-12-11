@@ -8,9 +8,11 @@
 
     <ul>
     {% for student in students %}
-        <li>{{ student.name|e }}</li>
+        <li class="{{ cycle(['white-background','lt-gray-white-background'], loop.index0) }}">{{ student.name|e }}</li>
     {% endfor %}
     </ul>
+
+    <p>Le dernier étudiant ajouté est {{ lastStudent }}.</p>
 
 </div>
 {% endblock %}

@@ -2,6 +2,10 @@
 
 {% block title %}Info de l'étudiant{% endblock %}
 
+{% block stylesheets %}
+    <link href="{{ asset('css/etudiant.css') }}" rel="stylesheet" />
+{% endblock %}
+
 {% block body %}
 <div class="example-wrapper">
     <h1>Info de l'étudiant</h1>
@@ -10,6 +14,8 @@
         <li><b>Prénom de l'étudiant :</b> {{ student.name|e }}</li>
         <li><b>Description :</b> {{ student.description|e }}</li>
     </ul>
+
+    <a href="{{ path('show_students') }}">Retour vers la liste des étudiants</a>
 
 </div>
 {% endblock %}

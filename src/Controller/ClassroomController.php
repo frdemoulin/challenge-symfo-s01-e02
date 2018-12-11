@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
 class ClassroomController extends AbstractController
@@ -42,10 +43,14 @@ class ClassroomController extends AbstractController
         ],
     ];
 
-    public function showStudents()
+    public function showStudents(SessionInterface $session)
     {
+        // on stocke en session Christophe à la clé lastStudent
+        $session->set('lastStudent', 'Christophe');
+
         return $this->render('classroom/students.html.twig', [
-            'students' => $this->names
+            'students' => $this->names,
+            'lastStudent' => $session->get('lastStudent')
         ]);
     }
 

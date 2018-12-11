@@ -46,18 +46,18 @@ class PdfController extends AbstractController
         ],
     ];
 
+// $file = __DIR__.'/../../public/assets/pdf/calendrier-2017-turquoise.pdf';
+        //$file = $finder->files()->in(__DIR__.'/../../public/assets/pdf');
+        //$file = path('public/assets/pdf/calendrier-2017-turquoise.pdf');
+
     /**
      * @Route("/pdf", name="pdf")
      */
     public function streamPdf()
     {
-        $stream  = new Stream(__DIR__.'/../../public/assets/pdf/calendrier-2017-turquoise.pdf');
-        // $file = __DIR__.'/../../public/assets/pdf/calendrier-2017-turquoise.pdf';
-        //$file = $finder->files()->in(__DIR__.'/../../public/assets/pdf');
-        //$file = path('public/assets/pdf/calendrier-2017-turquoise.pdf');
-        $response = new BinaryFileResponse($stream);
+        $response = new BinaryFileResponse(__DIR__.'/../../public/assets/pdf/calendrier-2017-turquoise.pdf');
         
-        return new Response($response);
+        return $response;
     }
 
     /**

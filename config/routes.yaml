@@ -7,7 +7,7 @@ show_students:
 
 # route /students/{id} affichant les infos d'un étudiant donné
 show_student_info:
-   path: /student/{id}
+   path: /students/{id}
    controller: App\Controller\ClassroomController::showStudentInfo
    requirements:
         id: '\d+'
