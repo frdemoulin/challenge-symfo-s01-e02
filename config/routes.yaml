@@ -1,3 +1,13 @@
-#index:
-#    path: /
-#    controller: App\Controller\DefaultController::index
+# config/routes.yaml
+
+# route /students affichant tous les étudiants
+show_students:
+   path: /students
+   controller: App\Controller\ClassroomController::showStudents
+
+# route /students/{id} affichant les infos d'un étudiant donné
+show_student_info:
+   path: /student/{id}
+   controller: App\Controller\ClassroomController::showStudentInfo
+   requirements:
+        id: '\d+'
