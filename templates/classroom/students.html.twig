@@ -7,12 +7,14 @@
     <h1>Liste des étudiants</h1>
 
     <ul>
-    {% for student in students %}
-        <li class="{{ cycle(['white-background','lt-gray-white-background'], loop.index0) }}">{{ student.name|e }}</li>
+    {% for student in student_list %}
+        <li class="{{ cycle(['white-background','lt-gray-white-background'], loop.index0) }}">
+            <a href="{{ path('show_student_info', {'id': loop.index0}) }}" >{{ student.name|e }}</a>
+        </li>
     {% endfor %}
     </ul>
 
-    <p>Le dernier étudiant ajouté est {{ lastStudent }}.</p>
+    <p>Le dernier étudiant affiché est {{ lastStudent.name }}.</p>
 
 </div>
 {% endblock %}
